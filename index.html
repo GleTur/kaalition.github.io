@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KAALITION - Организация</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Hamburger Menu Button -->
+    <div class="hamburger-menu" id="hamburgerMenu">
+        <div class="hamburger-line"></div>
+        <div class="hamburger-line"></div>
+        <div class="hamburger-line"></div>
+    </div>
+
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="user-profile">
+                <div class="user-avatar">
+                    <img id="sidebarUserAvatar" src="https://via.placeholder.com/80" alt="Avatar">
+                </div>
+                <div class="user-name" id="sidebarUserName">Гость</div>
+            </div>
+        </div>
+        <ul class="nav-menu">
+            <li><a href="#" data-page="news" class="active">Новости</a></li>
+            <li><a href="#" data-page="projects">Проекты</a></li>
+            <li><a href="#" data-page="members">Участники</a></li>
+            <li><a href="#" data-page="messenger">Мессенджер</a></li>
+            <li><a href="#" data-page="settings">Настройки</a></li>
+            <li id="adminPanelLink" style="display: none;"><a href="#" data-page="admin">Админ-панель</a></li>
+        </ul>
+        <div class="sidebar-footer">
+            <button id="logoutBtn" class="btn-secondary">Выйти</button>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="main-content" id="mainContent">
+        <!-- News Page -->
+        <div class="page active" id="newsPage">
+            <div class="page-header">
+                <h1 class="page-title">Новости KAALITION</h1>
+            </div>
+            <div class="news-grid" id="newsGrid">
+                <!-- News items will be inserted here -->
+            </div>
+        </div>
+
+        <!-- Projects Page -->
+        <div class="page" id="projectsPage">
+            <div class="page-header">
+                <h1 class="page-title">Проекты</h1>
+            </div>
+            <div class="projects-list" id="projectsList">
+                <!-- Projects will be inserted here -->
+            </div>
+        </div>
+
+        <!-- Members Page -->
+        <div class="page" id="membersPage">
+            <div class="page-header">
+                <h1 class="page-title">Участники KAALITION</h1>
+            </div>
+            <div class="members-grid" id="membersGrid">
+                <!-- Members will be inserted here -->
+            </div>
+        </div>
+
+        <!-- Messenger Page -->
+        <div class="page" id="messengerPage">
+            <div class="messenger-container">
+                <div class="messenger-sidebar">
+                    <div class="messenger-header">
+                        <h2>Мессенджер</h2>
+                        <div class="messenger-search">
+                            <input type="text" id="messengerSearch" placeholder="Поиск пользователя..." class="messenger-search-input">
+                            <div class="search-dropdown" id="searchDropdown"></div>
+                        </div>
+                    </div>
+                    <div class="chat-list" id="chatList">
+                        <div class="empty-state">
+                            <p>Используйте поиск выше, чтобы найти пользователя и начать диалог</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="messenger-main">
+                    <div class="chat-header" id="chatHeader">
+                        <div class="chat-info">
+                            <div class="chat-avatar">
+                                <img src="https://via.placeholder.com/40" alt="Chat">
+                            </div>
+                            <div class="chat-details">
+                                <div class="chat-name">Выберите чат</div>
+                                <div class="chat-status"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="messages-container" id="messagesContainer">
+                        <div class="empty-state">
+                            <p>Выберите пользователя из поиска, чтобы начать общение</p>
+                        </div>
+                    </div>
+                    <div class="message-input-container">
+                        <input type="text" id="messageInput" placeholder="Напишите сообщение..." class="message-input" disabled>
+                        <button id="sendMessageBtn" class="send-btn" disabled>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M22 2L11 13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Settings Page -->
+        <div class="page" id="settingsPage">
+            <div class="page-header">
+                <h1 class="page-title">Настройки</h1>
+            </div>
+            <div class="settings-container">
+                <div class="settings-section">
+                    <h2>Профиль</h2>
+                    <div class="settings-item">
+                        <label>USERNAME</label>
+                        <input type="text" id="settingsUsername" class="settings-input" placeholder="username">
+                    </div>
+                    <div class="settings-item">
+                        <label>Никнейм</label>
+                        <input type="text" id="settingsNickname" class="settings-input" placeholder="Никнейм">
+                    </div>
+                    <div class="settings-item">
+                        <label>Аватар URL</label>
+                        <input type="text" id="settingsAvatar" class="settings-input" placeholder="https://...">
+                    </div>
+                    <button id="saveProfileBtn" class="btn-primary">Сохранить профиль</button>
+                </div>
+
+                <div class="settings-section">
+                    <h2>Конфиденциальность</h2>
+                    <div class="settings-item">
+                        <label>Показывать статус онлайн</label>
+                        <input type="checkbox" id="settingsShowOnline" checked>
+                    </div>
+                    <div class="settings-item">
+                        <label>Получать уведомления</label>
+                        <input type="checkbox" id="settingsNotifications" checked>
+                    </div>
+                </div>
+
+                <div class="settings-section">
+                    <h2>Безопасность</h2>
+                    <div class="settings-item">
+                        <label>Текущий пароль</label>
+                        <input type="password" id="settingsOldPassword" class="settings-input" placeholder="Текущий пароль">
+                    </div>
+                    <div class="settings-item">
+                        <label>Новый пароль</label>
+                        <input type="password" id="settingsNewPassword" class="settings-input" placeholder="Новый пароль">
+                    </div>
+                    <button id="changePasswordBtn" class="btn-primary">Изменить пароль</button>
+                </div>
+
+                <div class="settings-section">
+                    <h2>Оформление</h2>
+                    <div class="settings-item">
+                        <label>Тема</label>
+                        <select id="settingsTheme" class="settings-input">
+                            <option value="dark">Темная</option>
+                            <option value="light">Светлая</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Admin Panel Page -->
+        <div class="page" id="adminPage">
+            <div class="page-header">
+                <h1 class="page-title">Админ-панель</h1>
+            </div>
+            <div class="admin-tabs">
+                <button class="admin-tab active" data-tab="statistics">Статистика</button>
+                <button class="admin-tab" data-tab="logs">Логи</button>
+                <button class="admin-tab" data-tab="users">Пользователи</button>
+                <button class="admin-tab" data-tab="admin-news">Новости</button>
+                <button class="admin-tab" data-tab="admin-projects">Проекты</button>
+                <button class="admin-tab" data-tab="admin-members">Участники</button>
+            </div>
+
+            <div class="admin-content">
+                <!-- Statistics Tab -->
+                <div class="admin-tab-content active" id="statisticsTab">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <h3>Всего пользователей</h3>
+                            <div class="stat-value" id="totalUsers">0</div>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Новостей</h3>
+                            <div class="stat-value" id="totalNews">0</div>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Проектов</h3>
+                            <div class="stat-value" id="totalProjects">0</div>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Участников</h3>
+                            <div class="stat-value" id="totalMembers">0</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Logs Tab -->
+                <div class="admin-tab-content" id="logsTab">
+                    <div class="logs-container" id="logsContainer">
+                        <!-- Logs will be inserted here -->
+                    </div>
+                </div>
+
+                <!-- Users Tab -->
+                <div class="admin-tab-content" id="usersTab">
+                    <div class="admin-table-container">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Username</th>
+                                    <th>Никнейм</th>
+                                    <th>Роль</th>
+                                    <th>Действия</th>
+                                </tr>
+                            </thead>
+                            <tbody id="usersTableBody">
+                                <!-- Users will be inserted here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Admin News Tab -->
+                <div class="admin-tab-content" id="adminNewsTab">
+                    <button class="btn-primary" id="addNewsBtn">+ Добавить новость</button>
+                    <div class="admin-items-list" id="adminNewsList">
+                        <!-- News items for editing will be inserted here -->
+                    </div>
+                </div>
+
+                <!-- Admin Projects Tab -->
+                <div class="admin-tab-content" id="adminProjectsTab">
+                    <button class="btn-primary" id="addProjectBtn">+ Добавить проект</button>
+                    <div class="admin-items-list" id="adminProjectsList">
+                        <!-- Projects for editing will be inserted here -->
+                    </div>
+                </div>
+
+                <!-- Admin Members Tab -->
+                <div class="admin-tab-content" id="adminMembersTab">
+                    <button class="btn-primary" id="addMemberBtn">+ Добавить участника</button>
+                    <div class="admin-items-list" id="adminMembersList">
+                        <!-- Members for editing will be inserted here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- News Detail Modal -->
+    <div class="modal" id="newsModal">
+        <div class="modal-content news-detail">
+            <button class="close-modal" id="closeNewsModal">✕</button>
+            <h1 id="newsDetailTitle"></h1>
+            <h2 id="newsDetailSubtitle"></h2>
+            <img id="newsDetailImage" src="" alt="">
+            <div id="newsDetailDescription"></div>
+        </div>
+    </div>
+
+    <!-- News Form Modal -->
+    <div class="modal" id="newsFormModal">
+        <div class="modal-content form-modal">
+            <button class="close-modal" id="closeNewsFormModal">✕</button>
+            <h2 id="newsFormTitle">Добавить новость</h2>
+            <form id="newsForm">
+                <input type="hidden" id="newsFormId">
+                <div class="form-group">
+                    <label>Заголовок</label>
+                    <input type="text" id="newsFormTitleInput" required>
+                </div>
+                <div class="form-group">
+                    <label>Подзаголовок</label>
+                    <input type="text" id="newsFormSubtitle" required>
+                </div>
+                <div class="form-group">
+                    <label>Изображение</label>
+                    <input type="file" id="newsFormImageFile" accept="image/*" class="file-input">
+                    <input type="text" id="newsFormImage" placeholder="или введите URL изображения">
+                    <div id="newsImagePreview" class="image-preview"></div>
+                </div>
+                <div class="form-group">
+                    <label>Описание</label>
+                    <textarea id="newsFormDescription" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn-primary">Сохранить</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Project Form Modal -->
+    <div class="modal" id="projectFormModal">
+        <div class="modal-content form-modal">
+            <button class="close-modal" id="closeProjectFormModal">✕</button>
+            <h2 id="projectFormTitle">Добавить проект</h2>
+            <form id="projectForm">
+                <input type="hidden" id="projectFormId">
+                <div class="form-group">
+                    <label>Заголовок</label>
+                    <input type="text" id="projectFormTitleInput" required>
+                </div>
+                <div class="form-group">
+                    <label>Описание</label>
+                    <textarea id="projectFormDescription" rows="3" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Изображение</label>
+                    <input type="file" id="projectFormImageFile" accept="image/*" class="file-input">
+                    <input type="text" id="projectFormImage" placeholder="или введите URL изображения">
+                    <div id="projectImagePreview" class="image-preview"></div>
+                </div>
+                <div class="form-group">
+                    <label>Текст кнопки</label>
+                    <input type="text" id="projectFormButtonText" value="Скачать" required>
+                </div>
+                <div class="form-group">
+                    <label>Ссылка</label>
+                    <input type="text" id="projectFormLink" required>
+                </div>
+                <button type="submit" class="btn-primary">Сохранить</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Member Form Modal -->
+    <div class="modal" id="memberFormModal">
+        <div class="modal-content form-modal">
+            <button class="close-modal" id="closeMemberFormModal">✕</button>
+            <h2 id="memberFormTitle">Добавить участника</h2>
+            <form id="memberForm">
+                <input type="hidden" id="memberFormId">
+                <div class="form-group">
+                    <label>Фото</label>
+                    <input type="file" id="memberFormPhotoFile" accept="image/*" class="file-input">
+                    <input type="text" id="memberFormPhoto" placeholder="или введите URL фото">
+                    <div id="memberPhotoPreview" class="image-preview"></div>
+                </div>
+                <div class="form-group">
+                    <label>Никнейм</label>
+                    <input type="text" id="memberFormNickname" required>
+                </div>
+                <div class="form-group">
+                    <label>Группа</label>
+                    <input type="text" id="memberFormGroup" required>
+                </div>
+                <div class="form-group">
+                    <label>Telegram канал</label>
+                    <input type="text" id="memberFormTelegram" placeholder="https://t.me/...">
+                </div>
+                <div class="form-group">
+                    <label>ITD канал</label>
+                    <input type="text" id="memberFormItd" placeholder="https://...">
+                </div>
+                <button type="submit" class="btn-primary">Сохранить</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="modal active" id="loginModal">
+        <div class="modal-content login-modal">
+            <h2>Вход в KAALITION</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" id="loginUsername" required>
+                </div>
+                <div class="form-group">
+                    <label>Пароль</label>
+                    <input type="password" id="loginPassword" required>
+                </div>
+                <button type="submit" class="btn-primary">Войти</button>
+            </form>
+            <p class="form-hint">Нет аккаунта? <a href="#" id="showRegister">Зарегистрироваться</a></p>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal" id="registerModal">
+        <div class="modal-content login-modal">
+            <h2>Регистрация</h2>
+            <form id="registerForm">
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" id="registerUsername" required>
+                </div>
+                <div class="form-group">
+                    <label>Никнейм</label>
+                    <input type="text" id="registerNickname" required>
+                </div>
+                <div class="form-group">
+                    <label>Пароль</label>
+                    <input type="password" id="registerPassword" required>
+                </div>
+                <button type="submit" class="btn-primary">Зарегистрироваться</button>
+            </form>
+            <p class="form-hint">Уже есть аккаунт? <a href="#" id="showLogin">Войти</a></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
